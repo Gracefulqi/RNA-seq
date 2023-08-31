@@ -26,6 +26,12 @@ All of them can be found in the `Packages` directore in this repository.
 ## 1. RNA-seq pipeline (using RZ1 as an example)
 ### 1.1 Data quality control
 ```bash
+#PBS N openmpi
+##PBS l nodes=1:ppn=12
+##PBS j oe
+##PBS l walltime=3:00:00
+##PBS l mem=10G
+
 fastp -i /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/rawdata/rz12d-1_R1.fastq.gz \
       -I /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/rawdata/rz12d-1_R2.fastq.gz \
       -o /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/fil/rz12d-1_R1.fastp.fastq.gz \
@@ -35,6 +41,8 @@ fastp -i /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/rawdata/rz12d-1_R1.fastq.gz
         -h /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/fil/rz12d-1.fastp.html
 ```
 
+### 1.2 Genome mapping
+```bash
 
 
 
