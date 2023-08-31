@@ -48,10 +48,20 @@ fastp -i /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/rawdata/rz12d-1_R1.fastq.gz
 #PBS -l nodes=1:ppn=12,mem=10G
 #PBS -q batch
 
-hisat2 -p 12 -x /public/home/zhangqq/Tair10_genome/hisat2_index/TAIR10 --summary-file /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.summary --dta-cufflinks -1 /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/fil/rz12d-1_R1.fastp.fastq.gz -2 /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/fil/rz12d-1_R2.fastp.fastq.gz | samtools view -ShuF 4 -q 20 -f 2 -@ 8 - | samtools sort -@ 8 -o /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorted.bam -
+hisat2 -p 12
+       -x /public/home/zhangqq/Tair10_genome/hisat2_index/TAIR10 \
+       --summary-file /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.summary \
+       --dta-cufflinks -1 /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/fil/rz12d-1_R1.fastp.fastq.gz \
+       -2 /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/fil/rz12d-1_R2.fastp.fastq.gz | \
+samtools view -ShuF 4 -q 20 -f 2 -@ 8 - | \
+samtools sort -@ 8 -o /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorted.bam -
 
-samtools index /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorted.bam
-bamCoverage --bam /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorted.bam -o rz1.deeptools.bw --binSize 10 --normalizeUsing RPGC --effectiveGenomeSize 119481543
+samtools index /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorted.bam \
+bamCoverage --bam /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorted.bam \
+            -o rz1.deeptools.bw \
+            --binSize 10 \
+            --normalizeUsing RPGC \
+            --effectiveGenomeSize 119481543
 
 
 
