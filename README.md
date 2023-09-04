@@ -55,14 +55,20 @@ hisat2 -p 12
        -2 /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/fil/rz12d-1_R2.fastp.fastq.gz | \
 samtools view -ShuF 4 -q 20 -f 2 -@ 8 - | \
 samtools sort -@ 8 -o /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorted.bam -
+```
 
+### 1.3 Convert the BAM format to bigwig format for tract visualization
+```bash
 samtools index /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorted.bam \
 bamCoverage --bam /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorted.bam \
             -o rz1.deeptools.bw \
             --binSize 10 \
             --normalizeUsing RPGC \
             --effectiveGenomeSize 119481543
+```
 
+### 1.4 Get the gene expression matrix
+```
 
 
 
