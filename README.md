@@ -19,6 +19,7 @@ hisat2 2.1.0
 cutadapt 4.4
 samtools 1.11
 bedtools v2.29.2
+StringTie v2.2.1
 ```
 
 All of them can be found in the `Packages` directore in this repository.
