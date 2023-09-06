@@ -70,7 +70,8 @@ bamCoverage --bam /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorte
 
 ### 1.4 Get the gene expression matrix
 ```
-
+stringtie /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorted.bam \ # 此bam是samtools sort处理后的文件
+          -G 
 
 
 
