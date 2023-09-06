@@ -69,7 +69,8 @@ bamCoverage --bam /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorte
 ```
 
 ### 1.4 Get the gene expression matrix
-``````bash
+### 1.4.1 Assemble the transcripts
+```bash
 #!/bin/bash
 #PBS -N QQtest
 #PBS -l nodes=1:ppn=12,mem=10G
@@ -80,8 +81,15 @@ stringtie /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorted.bam \ 
           -G /public/home/zhangqq/Tair10_genome/TAIR10.gff3 \
           -l rz1 -o /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.transcripts.stringtie.gtf \
           -p 12 
-          --merge -G /public/home/zhangqq/Tair10_genome/TAIR10.gff3 \
-          -F 0.1 -T 0.1 -i -o /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.stringtie_merged.gtf
+```
+### 1.4.2 Merge the transcript samples
+```bash
+vi mergelist.txt #需要包含之前output.gtf文件的路径
+/public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.transcripts.stringtie.gtf
+
+stringtie --merge -G /public/home/zhangqq/Tair10_genome/TAIR10.gff3 \
+          -F 0.1 -T 0.1 -i -o /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.stringtie_merged.gtf \ 
+          mergelist.txt
 ```
           
 
