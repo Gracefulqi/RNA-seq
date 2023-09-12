@@ -80,7 +80,7 @@ bamCoverage --bam /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorte
 stringtie /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorted.bam \ # 此bam是samtools sort处理后的文件
           -G /public/home/zhangqq/Tair10_genome/TAIR10.gff3 \
           -l rz1 -o /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.transcripts.stringtie.gtf \
-          -p 12 
+          -p 12 -e
 ```
 ### 1.4.2 Merge the transcript samples
 ```bash
@@ -90,7 +90,8 @@ vi mergelist.txt #需要包含之前output.gtf文件的路径
 stringtie --merge -G /public/home/zhangqq/Tair10_genome/TAIR10.gff3 \
           -F 0.1 -T 0.1 -i -o /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.stringtie_merged.gtf \ 
           mergelist.txt
-```
+``` 
+### 1.4.3 
           
 
 
