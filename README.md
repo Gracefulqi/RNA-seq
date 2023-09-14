@@ -82,7 +82,7 @@ stringtie /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorted.bam \ 
           -l rz1 -o /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.transcripts.stringtie.gtf \
           -p 12 -e
 ```
-### 1.4.2 Merge the transcript samples
+### 1.4.2 Merge the transcript samples (处理多个生物学重复样本时需要合并)
 ```bash
 vi mergelist.txt #需要包含之前output.gtf文件的路径
 /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.transcripts.stringtie.gtf
