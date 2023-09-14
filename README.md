@@ -95,7 +95,8 @@ stringtie --merge -G /public/home/zhangqq/Tair10_genome/TAIR10.gff3 \
 '''bash
 vim sample_list.txt #需要包含样本名和定量的gtf文件的路径
 rz1      /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.transcripts.stringtie.gtf #txt文件内容，文件名和gtf文件之间用TAB键隔开
-
+```
+```bash
 source activate python2
 python /public/home/zhangqq/software/stringtie-2.2.1/prepDE.py \ #使用python的prepDE.py命令(prepDE.py在stringtie下面，写上prepDE.py的绝对路径)
        -i /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/sample_list.txt \
