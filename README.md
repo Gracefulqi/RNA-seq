@@ -65,7 +65,7 @@ bamCoverage --bam /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorte
             -o rz1.deeptools.bw \
             --binSize 10 \
             --normalizeUsing RPGC \
-            --effectiveGenomeSize 119481543
+            --effectiveGenomeSize 119481543 #拟南芥染色体基因组大小
 ```
 
 ### 1.4 Get the gene expression matrix
@@ -78,22 +78,29 @@ bamCoverage --bam /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorte
 #PBS -j oe
 
 stringtie /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorted.bam \ # 此bam是samtools sort处理后的文件
-          -G /public/home/zhangqq/Tair10_genome/TAIR10.gff3 \
+          -G /public/home/zhangqq/Tair10_genome/TAIR10.gff3 \ #参考基因组注释文件
           -l rz1 -o /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.transcripts.stringtie.gtf \
-          -p 12 -e
+          -p 12 -e 
 ```
 ### 1.4.2 Merge the transcript samples (处理多个生物学重复样本时需要合并)
 ```bash
-vi mergelist.txt #需要包含之前output.gtf文件的路径
-/public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.transcripts.stringtie.gtf
+vim mergelist.txt #需要包含之前output.gtf文件的路径
+/public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.transcripts.stringtie.gtf #txt文件内容
 
 stringtie --merge -G /public/home/zhangqq/Tair10_genome/TAIR10.gff3 \
           -F 0.1 -T 0.1 -i -o /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.stringtie_merged.gtf \ 
           mergelist.txt
 ``` 
-### 1.4.3 
-          
+### 1.4.3 Quantitative analysis
+'''bash
+vim sample_list.txt #需要包含样本名和定量的gtf文件的路径
+rz1 /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.transcripts.stringtie.gtf #txt文件内容
 
+python prepDE.py \ #使用python的prepDE.py命令
+       -i sample_list.txt \
+       -g gene_count_matrix.csv \
+       -t transcript_count_matrix.csv 
+                 
 
 
 
