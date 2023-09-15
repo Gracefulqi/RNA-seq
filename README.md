@@ -20,6 +20,7 @@ cutadapt 4.4
 samtools 1.11
 bedtools v2.29.2
 StringTie v2.2.1
+DESeq2 2.17
 ```
 
 All of them can be found in the `Packages` directore in this repository.
@@ -68,7 +69,7 @@ bamCoverage --bam /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorte
             --effectiveGenomeSize 119481543 #拟南芥染色体基因组大小
 ```
 
-### 1.4 Get the gene expression matrix
+### 1.4 Get the gene expression matrix (stringtie可以组装转录本，包含内含子；featurecount只可以计算外显子的表达量)
 ### 1.4.1 Assemble the transcripts
 ```bash
 #!/bin/bash
@@ -95,7 +96,8 @@ stringtie --merge -G /public/home/zhangqq/Tair10_genome/TAIR10.gff3 \
 '''bash
 vim sample_list.txt #需要包含样本名和定量的gtf文件的路径
 rz1      /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.transcripts.stringtie.gtf #txt文件内容，文件名和gtf文件之间用TAB键隔开
-```
+
+```bash
 source activate python2
 python /public/home/zhangqq/software/stringtie-2.2.1/prepDE.py \ #使用python的prepDE.py命令(prepDE.py在stringtie下面，写上prepDE.py的绝对路径)
        -i /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/sample_list.txt \
