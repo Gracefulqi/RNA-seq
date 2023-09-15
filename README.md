@@ -81,7 +81,7 @@ bamCoverage --bam /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorte
 stringtie /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/map/rz1.rep1.sorted.bam \ # 此bam是samtools sort处理后的文件
           -G /public/home/zhangqq/Tair10_genome/TAIR10.gff3 \ #参考基因组注释文件
           -l rz1 -o /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.transcripts.stringtie.gtf \
-          -p 12 -e 
+          -p 12 -e #如果现有的参考基因组注释文件足够了，则使用-e参数；使用-e参数才可以运行prepDE.py3脚本得到readcount矩阵；用于计算readcounts时需要-e；如果不需要预测新的转录本时，需要使用-e,如果不使用-e则会使转录本稀释，导致所关注的转录本统计不到
 ```
 ### 1.4.2 Merge the transcript samples (处理多个生物学重复样本时需要合并)
 ```bash
@@ -99,7 +99,7 @@ rz1      /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/rz1.transcr
 
 ```bash
 source activate python2
-python /public/home/zhangqq/software/stringtie-2.2.1/prepDE.py \ #使用python的prepDE.py命令(prepDE.py在stringtie下面，写上prepDE.py的绝对路径)
+python /public/home/zhangqq/software/stringtie-2.2.1/prepDE.py \ #使用python的prepDE.py命令(prepDE.py在stringtie下面，写上prepDE.py的绝对路径,不写绝对路径，系统识别不出来)
        -i /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/sample_list.txt \
        -g /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/gene_count_matrix.csv \
        -t /public/home/zhangqq/RNA-seq_Col_rz1_FangYJ/gene_expression/transcript_count_matrix.csv 
